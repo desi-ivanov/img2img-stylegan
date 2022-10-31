@@ -1,6 +1,8 @@
 ## StyleGAN2-UNet
 A style-based GAN with UNet-guided synthesis.
 
+Some examples from a GAN trained on [UniToPatho](https://github.com/EIDOSLAB/UNITOPATHO):
+
 ![multi-style-generation](./docs/multi-style-generation.jpg)
 
 https://user-images.githubusercontent.com/20824840/198903666-7a130b1d-4bc3-49d5-8f41-e964515b2adb.mp4
