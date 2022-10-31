@@ -91,7 +91,7 @@ def setup_training_loop_kwargs(
     assert isinstance(snap, int)
     if snap < 1:
         raise UserError('--snap must be at least 1')
-    args.image_snapshot_ticks = image_snapshot_ticks if image_snapshot_ticks is None else snap
+    args.image_snapshot_ticks = image_snapshot_ticks if image_snapshot_ticks is not None else snap
     args.network_snapshot_ticks = snap
 
     if metrics is None:
