@@ -1,5 +1,5 @@
 ## StyleGAN2-UNet
-A style-based GAN with UNet-guided synthesis.
+A style-based GAN with UNet-guided synthesis. This work is part of my master's degree thesis available [here](https://desislav.dev/msc-thesis-compressed.pdf). 
 
 Some examples after training on the [UniToPatho](https://github.com/EIDOSLAB/UNITOPATHO) dataset:
 
@@ -45,5 +45,4 @@ FLASK_APP=srv.py python -m flask run --host=0.0.0.0
 ```
 
 ## Acknowledgements
-
-This work was supported by [EIDOSLab](https://github.com/EIDOSlab). The code is heavily based on [StyleGAN2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch).
+This was supported by [EIDOSLab](https://github.com/EIDOSlab) and [Università degli Studi di Torino](https://www.unito.it/). The code is heavily based on [StyleGAN2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch).
