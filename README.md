@@ -1,5 +1,5 @@
-## StyleGAN2-UNet
-A style-based GAN with UNet-guided synthesis. This work is part of my master's degree thesis available [here](https://desislav.dev/msc-thesis-compressed.pdf). 
+## Image-to-image translation with StyleGAN and UNet
+A styleGAN with UNet-guided synthesis. This work is part of my master's degree thesis available [here](https://desislav.dev/msc-thesis-compressed.pdf). 
 
 Some examples after training on the [UniToPatho](https://github.com/EIDOSLAB/UNITOPATHO) dataset:
 
