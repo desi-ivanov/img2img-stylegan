@@ -45,4 +45,4 @@ FLASK_APP=srv.py python -m flask run --host=0.0.0.0
 ```
 
 ## Acknowledgements
-This was supported by [EIDOSLab](https://github.com/EIDOSlab) and [Università degli Studi di Torino](https://www.unito.it/). The code is heavily based on [StyleGAN2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch).
+This work was supported by [EIDOSLab](https://github.com/EIDOSlab) and [Università degli Studi di Torino](https://www.unito.it/). The code is heavily based on [StyleGAN2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch).
