@@ -27,7 +27,7 @@ class Dataset(torch.utils.data.Dataset):
         raw_shape,              # Shape of the raw image data (NCHW).
         max_size    = None,     # Artificially limit the size of the dataset. None = no limit. Applied before xflip.
         use_labels  = False,    # Enable conditioning labels? False = label dimension is zero.
-        xflip        = False,    # Ignored for AE
+        xflip       = False,    # Artificially double the size of the dataset via x-flips. Applied after max_size.
         random_seed = 0,        # Random seed to use when applying max_size.
     ):
         self._name = name
@@ -44,6 +44,9 @@ class Dataset(torch.utils.data.Dataset):
 
         # Apply xflip.
         self._xflip = np.zeros(self._raw_idx.size, dtype=np.uint8)
+        if xflip:
+            self._raw_idx = np.tile(self._raw_idx, 2)
+            self._xflip = np.concatenate([self._xflip, np.ones_like(self._xflip)])
 
     def _get_raw_labels(self):
         if self._raw_labels is None:
@@ -83,7 +86,6 @@ class Dataset(torch.utils.data.Dataset):
         image = self._load_raw_image(self._raw_idx[idx])
         assert isinstance(image, np.ndarray)
         assert list(image.shape) == self.image_shape
-        # assert image.dtype == np.uint8
         if self._xflip[idx]:
             assert image.ndim == 3 # CHW
             image = image[:, :, ::-1]
