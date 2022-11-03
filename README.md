@@ -30,10 +30,10 @@ python3 train.py \
   --gpus=1
 ```
 
-Please refer to [`python train.py --help`](./docs/train-help.txt) for the full list.
+Please refer to [`python train.py --help`](./docs/train-help.txt) for the full list of options.
 
 ## Inference Server
-You can spin up an API server that can be used for inference. Refer to [srv.py](./srv.py) for more details.
+You can spin up an API server that can be used for inference. Refer to [srv.py](./srv.py) for more details. A web client compatible with this server is available at [histopatho-drawer](https://github.com/desi-ivanov/histopatho-drawer).
 
 Example usage:
 ```bash
