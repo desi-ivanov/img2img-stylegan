@@ -276,24 +276,18 @@ def setup_training_loop_kwargs(
 
     assert augpipe is None or isinstance(augpipe, str)
     if augpipe is None:
-        augpipe = 'bgc'
+        augpipe = 'cn'
     else:
         if aug == 'noaug':
             raise UserError('--augpipe cannot be specified with --aug=noaug')
         desc += f'-{augpipe}'
-
+    # original stylegan2 augpipe is not fully supported yet
     augpipe_specs = {
-        'blit':   dict(xflip=1, rotate90=1, xint=1),
-        'geom':   dict(scale=1, rotate=1, aniso=1, xfrac=1),
-        'color':  dict(brightness=1, contrast=1, lumaflip=1, hue=1, saturation=1),
+        'color': dict(brightness=1, contrast=1, hue=1, saturation=1),
+        'noise': dict(noise=1),
         'filter': dict(imgfilter=1),
-        'noise':  dict(noise=1),
-        'cutout': dict(cutout=1),
-        'bg':     dict(xflip=1, rotate90=1, xint=1, scale=1, rotate=1, aniso=1, xfrac=1),
-        'bgc':    dict(xflip=1, rotate90=1, xint=1, scale=1, rotate=1, aniso=1, xfrac=1, brightness=1, contrast=1, lumaflip=1, hue=1, saturation=1),
-        'bgcf':   dict(xflip=1, rotate90=1, xint=1, scale=1, rotate=1, aniso=1, xfrac=1, brightness=1, contrast=1, lumaflip=1, hue=1, saturation=1, imgfilter=1),
-        'bgcfn':  dict(xflip=1, rotate90=1, xint=1, scale=1, rotate=1, aniso=1, xfrac=1, brightness=1, contrast=1, lumaflip=1, hue=1, saturation=1, imgfilter=1, noise=1),
-        'bgcfnc': dict(xflip=1, rotate90=1, xint=1, scale=1, rotate=1, aniso=1, xfrac=1, brightness=1, contrast=1, lumaflip=1, hue=1, saturation=1, imgfilter=1, noise=1, cutout=1),
+        'cn': dict(brightness=1, contrast=1, hue=1, saturation=1, noise=1),
+        'cnf': dict(brightness=1, contrast=1, hue=1, saturation=1, noise=1, imgfilter=1),
     }
 
     assert augpipe in augpipe_specs
@@ -440,7 +434,7 @@ class CommaSeparatedList(click.ParamType):
 @click.option('--aug', help='Augmentation mode [default: ada]', type=click.Choice(['noaug', 'ada', 'fixed']))
 @click.option('--p', help='Augmentation probability for --aug=fixed', type=float)
 @click.option('--target', help='ADA target value for --aug=ada', type=float)
-@click.option('--augpipe', help='Augmentation pipeline [default: bgc]', type=click.Choice(['blit', 'geom', 'color', 'filter', 'noise', 'cutout', 'bg', 'bgc', 'bgcf', 'bgcfn', 'bgcfnc']))
+@click.option('--augpipe', help='Augmentation pipeline [default: color]', type=click.Choice(["color", "noise", "filter", "cn", "cnf"]))
 
 # Transfer learning.
 @click.option('--resume', help='Resume training [default: noresume]', metavar='PKL')
