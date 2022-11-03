@@ -1,5 +1,5 @@
 ## Image-to-image translation with StyleGAN and UNet
-A styleGAN with UNet-guided synthesis. This work is part of [Ivanov](https://github.com/desi-ivanov)'s MSc thesis available [here](https://desislav.dev/msc-thesis-compressed.pdf). 
+A StyleGAN with UNet-guided synthesis. More details available [here](https://desislav.dev/msc-thesis-compressed.pdf).
 
 Some examples after training on the [UniToPatho](https://github.com/EIDOSLAB/UNITOPATHO) dataset:
 
