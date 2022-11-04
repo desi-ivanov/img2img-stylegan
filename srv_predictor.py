@@ -13,11 +13,23 @@ import dnnlib
 import legacy
 from training.dataset import ZipDataset, WithSegSplit
 
+class Wrapper(torch.nn.Module):
+    def __init__(self, E, G):
+        super().__init__()
+        self.E = E
+        self.G = G
+    def forward(self, z, x, c, **G_kwargs):
+        skips = self.E(x)
+        return self.G(z, c, imgs=skips, **G_kwargs)
+
 def load_ae(model_path):
     with dnnlib.util.open_url(model_path) as f:
         data = legacy.load_network_pkl(f) 
-    model = (data['AE'] if 'AE' in data else data['VAE']).requires_grad_(False).cuda().eval()
-    return model
+    if 'AE' not in data and 'VAE' not in data:
+        model = Wrapper(data['E'], data['G'])
+    else:
+        model = (data['AE'] if 'AE' in data else data['VAE'])
+    return model.requires_grad_(False).cuda().eval()
 
 def load_clf(clf_path):
     clf = resnet18()
